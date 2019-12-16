@@ -15,21 +15,20 @@ if($sql=mysqli_query($con,$query))
 {
   $productMath=mysqli_num_rows($sql);
   if($productMath){
-  $query="INSERT IGNORE INTO `think_image_path` ( `product_image`) VALUES ($product_name)";
-  // $image_sql=mysqli_query($con,$query);
-  // echo $image_sql;
-  // if($image_sql){
-  //   echo "更新成功";
-  // }else{
-  //   return "此货物已经过, 扫过重复的单号";
-  // }
-
-  // $sql=mysqli_query($con,$query);
-  $_SESSION['message']="可以上架";
-  echo $_SESSION['message'];
-  session_unset();
-  }else{
-
+  $query2 = "SELECT * FROM think_image_path WHERE product_image ='$product_name'";
+  $result = mysqli_query($con, $query2);
+  $numbers = mysqli_num_rows($result);
+  echo $numbers;
+  if ($numbers > 0) {
+    echo $product_name . "已经录入过了";
+  } else {
+    $query_add = "INSERT IGNORE INTO think_image_path (product_image) VALUES ('$product_name')";
+    mysqli_query($con, $query_add);
+    $_SESSION['message'] = "可以上架";
+    echo $_SESSION['message'];
+    session_unset();
+  }
+}else{
   $_SESSION['message']="输入的商品信息有误";
   echo $_SESSION['message'];
   session_unset();
