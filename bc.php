@@ -20,7 +20,7 @@ if($sql=mysqli_query($con,$query))
   if ($numbers > 0) {
     echo $product_name . "已经录入过了";
   } else {
-    $query_add = "INSERT IGNORE INTO think_image_path (product_image) VALUES ('$product_name')";
+    $query_add = "INSERT IGNORE INTO think_image_path (product_image,date_add) VALUES ('$product_name',now())";
     mysqli_query($con, $query_add);
 
     $_SESSION['message'] = "可以上架";
