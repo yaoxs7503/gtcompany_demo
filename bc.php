@@ -1,7 +1,6 @@
 <?php
 session_start();
-
-$session["message"]="请输入正确的单号";
+// var_dump($_SESSION);
 $con=mysqli_connect("localhost","root","guotong","it_think_sql");
 if($con){
   // echo "连接成功";
@@ -18,7 +17,6 @@ if($sql=mysqli_query($con,$query))
   $query2 = "SELECT * FROM think_image_path WHERE product_image ='$product_name'";
   $result = mysqli_query($con, $query2);
   $numbers = mysqli_num_rows($result);
-  // echo $numbers;
   if ($numbers > 0) {
     echo $product_name . "已经录入过了";
   } else {
@@ -35,12 +33,10 @@ if($sql=mysqli_query($con,$query))
   session_unset();
   }
 } else {
-  $_SESSION['message'] = "输入的商品信息有误";
+  $_SESSION['message'] = "请在输入框输入您的单号";
   echo $_SESSION['message'];
   session_unset();
 }
-
-
 mysqli_close($con);
 ?>
 <!DOCTYPE html>
