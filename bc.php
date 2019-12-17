@@ -28,7 +28,7 @@ if($sql=mysqli_query($con,$query))
     session_unset();
   }
 }else{
-  $_SESSION['message']="输入的商品信息有误";
+  $_SESSION['message']="无此单号数据,请去查找是否下放此数据";
   echo $_SESSION['message'];
   session_unset();
   }
