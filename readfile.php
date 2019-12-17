@@ -8,7 +8,7 @@ while (($filename = readdir($handler)) !== false)
             $files[] = $filename ;  
        }  
    }  
-   var_dump($files);
+var_dump($files);
 closedir($handler);
 foreach ($files as $value) {  
     echo $value, PHP_EOL;  
