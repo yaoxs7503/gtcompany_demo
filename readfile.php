@@ -33,7 +33,6 @@ while($row=mysqli_fetch_array($picture_query)){
     $pictures[]=$row['product_image'];
 }
 }else{
- 
  echo "暂时没有文件";
 }
 // var_dump($pictures);
@@ -43,8 +42,5 @@ if($picturesNumber>0){
         echo $files[$i];
         rename("picture/{$files[$i]}","images/{$pictures[$i]}.jpg");
     }
-
-}else{
-    echo "暂时没有相片可以进行存储";
 }
 ?>
