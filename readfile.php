@@ -14,6 +14,4 @@ foreach ($files as $value) {
     echo $value;
 }    
 
-
-// 我尝试了还原试试看
 ?>
