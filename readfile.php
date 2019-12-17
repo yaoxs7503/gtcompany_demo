@@ -11,7 +11,7 @@ while (($filename = readdir($handler)) !== false)
    var_dump($files);
 closedir($handler);
 foreach ($files as $value) {  
-    echo $value, PHP_EOL;  
+    echo $value;
 }    
 
 
