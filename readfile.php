@@ -13,5 +13,5 @@ closedir($handler);
 foreach ($files as $value) {  
     echo $value, PHP_EOL;  
 }    
-
+echo count($files);
 ?>
