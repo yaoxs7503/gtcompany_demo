@@ -1,3 +1,4 @@
+<?php require "header.php" ?>
 <?php
 session_start();
 // var_dump($_SESSION);
@@ -24,8 +25,12 @@ if($sql=mysqli_query($con,$query))
     mysqli_query($con, $query_add);
 
     $_SESSION['message'] = "可以上架";
-    echo $_SESSION['message'];
-    session_unset();
+    $value<<<EOD
+	<p>
+     $_SESSION['message']\n;
+    </p>
+    EOD;
+    echo $value;
   }
 }else{
   $_SESSION['message']="输入的商品信息有误";
@@ -39,22 +44,19 @@ if($sql=mysqli_query($con,$query))
 }
 mysqli_close($con);
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
 
 <body>
-  <form method="post" action="bc.php">
+  <div class="container">
+   <form method="post" action="bc.php">
+     <div class="form-group">
     <label for="product_name">产品名称</label>
-    <input type="text" name="product_name">
-    <button type="submit">提交</button>
-  </form>
+    <input type="text" name="product_name" class="form-control">
+</div>
+    <button type="submit" class="btn bg-primary">提交</button>
+  </form> 
+  </div>
+  
 </body>
 
-</html>
+<?php require "footer.php" ?>
