@@ -22,6 +22,7 @@ if (count($files) > 0) {
     while ($row = mysqli_fetch_array($picture_query)) {
         $pictures[] = $row['product_image'];
     }
+    sleep(6);
     $picturesNumber = count($pictures);
     for ($i = 0; $i < $picturesNumber; $i++) {
             rename("picture/{$files[$i]}", "images/{$pictures[$i]}.jpg");
