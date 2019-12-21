@@ -23,14 +23,7 @@ if($sql=mysqli_query($con,$query))
   } else {
     $query_add = "INSERT IGNORE INTO think_image_path (product_image,date_add) VALUES ('$product_name',now())";
     mysqli_query($con, $query_add);
-
-    $_SESSION['message'] = "可以上架";
-    $value<<<EOD
-	<p>
-     $_SESSION['message']\n;
-    </p>
-    EOD;
-    echo $value;
+    echo $_SESSION['message'];
   }
 }else{
   $_SESSION['message']="输入的商品信息有误";
@@ -40,7 +33,7 @@ if($sql=mysqli_query($con,$query))
 } else {
   $_SESSION['message'] = "请在输入框输入您的单号";
   echo $_SESSION['message'];
-  session_unset();
+  // session_unset();
 }
 mysqli_close($con);
 ?>

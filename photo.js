@@ -18,6 +18,7 @@ function refresh(){
 function byphp(){
   if(xmlHttp.readyState==4){
     let data=xmlHttp.responseText;
+    
     document.getElementById('div1').innerHTML=data;
   }
 }
