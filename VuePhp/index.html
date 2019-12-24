@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title></title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css'/>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css'/>
+</head>
+<style>
+  #overlay{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background-color:rgba(0,0,0,0.8);
+  }
+</style>
+<body>
+
+  
+</body>
+<div id="app">
+<div class="container-fluid">
+
+  <div class="row bg-dark">
+    <div class="col-lg-12">
+      <p class="text-center text-light display-4 pt-2" style="font-size: 25px;">Vue 结合 PHP</p>
+    </div>    
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-3">
+
+    <div class="col-lg-6">
+      <h3 class="text-info">注册用户</h3>
+    </div>
+    <div class="col-lg-6">
+      <button class="btn btn-info float-right" @click="showAddModal=true">
+        <i class="fas fa-user"></i>
+        加入新的用户</button>
+    </div>
+  </div>
+  <hr class="bg-info">
+  <div class="alert alert-danger" v-if="errorMsg">
+    用户登录失败
+  </div>
+  <div class="alert alert-success" v-if="successMsg">
+    用户登录成功
+  </div>
+<!-- 显示记录 -->
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr class="text-center bg-info text-light">
+          <th>ID</th>
+          <th>Name</th>
+          <th>邮件</th>
+          <th>手机</th>
+          <th>编辑</th>
+          <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center">
+            <td>1</td> 
+            <td>Philip</td>
+            <td>yaoxs@guotong.org</td>
+            <td>13424612512</td>
+            <td><a href="#" class="text-success" @click="showEditModal=true">
+              <i class="fas fa-edit"></i>
+              </a></td>
+            <td><a href="#" class="text-danger">
+              <i class="fas fa-trash-alt" @click="showDeleteModal=true"></i>
+            </td>
+         </a>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+<!-- 显示信息 -->
+<div id="overlay" v-if="showAddModal">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        加入新的用户
+      </h5>
+      <button type="button" class="close" @click="showAddModal=false">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-4">
+      <form action="#" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg" name="name" placeholder="输入姓名">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control form-control-lg" name="email" placeholder="邮箱">
+        </div>
+        <div class="form-group">
+          <input type="tel" class="form-control form-control-lg" name="phone" placeholder="手机">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-info btn-block btn-lg">加入用户</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- 显示信息结束 -->
+<!-- 编辑信息 -->
+<div id="overlay" v-if="showEditModal">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        修改新的用户
+      </h5>
+      <button type="button" class="close" @click="showEditModal=false">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-4">
+      <form action="#" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control form-control-lg" name="name" placeholder="输入姓名">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control form-control-lg" name="email" placeholder="邮箱">
+        </div>
+        <div class="form-group">
+          <input type="tel" class="form-control form-control-lg" name="phone" placeholder="手机">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-info btn-block btn-lg">加入用户</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+</div>
+<!-- 编辑信息结束 -->
+
+<!-- 删除信息 -->
+<div id="overlay" v-if="showDeleteModal">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        删除新的用户
+      </h5>
+      <button type="button" class="close" @click="showDeleteModal=false">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body p-4">
+     <h4>你确认是需要删除的吗</h4> 
+     <h5>你确认需要删除</h5>
+     <hr>
+     <button class="btn btn-danger btn-lg">确认</button>
+     <button class="btn btn-success btn-lg">不需要</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 删除信息结束 -->
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
+
+<script src="main.js"></script>
+</html>
