@@ -76,9 +76,9 @@ if($action=='update'){
     $result['error']=true;
     $result['message']="无法更新用户!";
   }
-  var_dump($users);
+  // var_dump($users);
   $result['users']=$users;
-  var_dump($result);
+  // var_dump($result);
 }
 
 
