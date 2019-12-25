@@ -45,10 +45,10 @@
   </div>
   <hr class="bg-info">
   <div class="alert alert-danger" v-if="errorMsg">
-    用户登录失败
+    {{errorMsg}}
   </div>
   <div class="alert alert-success" v-if="successMsg">
-    用户登录成功
+{{successMsg}}
   </div>
 <!-- 显示记录 -->
 <div class="row">
@@ -65,23 +65,18 @@
         </tr>
         </thead>
         <tbody>
-          <tr class="text-center">
-            <td>1</td> 
-            <td>Philip</td>
-            <td>yaoxs@guotong.org</td>
-            <td>13424612512</td>
-            <td><a href="#" class="text-success" @click="showEditModal=true">
+          <tr class="text-center"  v-for="user in users">
+            <td>{{user.id}}</td> 
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+            <td><a href="#" class="text-success" @click="showEditModal=true; selectUser(user);">
               <i class="fas fa-edit"></i>
               </a></td>
             <td><a href="#" class="text-danger">
-              <i class="fas fa-trash-alt" @click="showDeleteModal=true"></i>
+              <i class="fas fa-trash-alt" @click="showDeleteModal=true; selectUser(user);"></i>
             </td>
          </a>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
         </tbody>
     </table>
@@ -101,16 +96,16 @@
     <div class="modal-body p-4">
       <form action="#" method="post">
         <div class="form-group">
-          <input type="text" class="form-control form-control-lg" name="name" placeholder="输入姓名">
+          <input type="text" class="form-control form-control-lg" name="name" placeholder="输入姓名" v-model="newUser.name">
         </div>
         <div class="form-group">
-          <input type="email" class="form-control form-control-lg" name="email" placeholder="邮箱">
+          <input type="email" class="form-control form-control-lg" name="email" placeholder="邮箱" v-model="newUser.email">
         </div>
         <div class="form-group">
-          <input type="tel" class="form-control form-control-lg" name="phone" placeholder="手机">
+          <input type="tel" class="form-control form-control-lg" name="phone" placeholder="手机" v-model="newUser.phone">
         </div>
         <div class="form-group">
-          <button class="btn btn-info btn-block btn-lg">加入用户</button>
+          <button class="btn btn-info btn-block btn-lg" @click="showAddModal=false; addUser();clearMsg();">加入用户</button>
         </div>
       </form>
     </div>
@@ -118,6 +113,8 @@
 </div>
 </div>
 <!-- 显示信息结束 -->
+
+
 <!-- 编辑信息 -->
 <div id="overlay" v-if="showEditModal">
 <div class="modal-dialog">
@@ -133,16 +130,16 @@
     <div class="modal-body p-4">
       <form action="#" method="post">
         <div class="form-group">
-          <input type="text" class="form-control form-control-lg" name="name" placeholder="输入姓名">
+          <input type="text" class="form-control form-control-lg" name="name"  v-model="currentUser.name">
         </div>
         <div class="form-group">
-          <input type="email" class="form-control form-control-lg" name="email" placeholder="邮箱">
+          <input type="email" class="form-control form-control-lg" name="email"  v-model="currentUser.email">
         </div>
         <div class="form-group">
-          <input type="tel" class="form-control form-control-lg" name="phone" placeholder="手机">
+          <input type="tel" class="form-control form-control-lg" name="phone" v-model="currentUser.phone">
         </div>
         <div class="form-group">
-          <button class="btn btn-info btn-block btn-lg">加入用户</button>
+          <button class="btn btn-info btn-block btn-lg" @click="showEditModal=false; updateUser();clearMsg();" >修改用户</button>
         </div>
       </form>
     </div>
@@ -166,11 +163,10 @@
       </button>
     </div>
     <div class="modal-body p-4">
-     <h4>你确认是需要删除的吗</h4> 
-     <h5>你确认需要删除</h5>
+     <h4>你确认是需要删除'{{currentUser.name}}'的吗</h4> 
      <hr>
-     <button class="btn btn-danger btn-lg">确认</button>
-     <button class="btn btn-success btn-lg">不需要</button>
+     <button class="btn btn-danger btn-lg" @click="showDeleteModal=false; deleteUser();clearMsg();">确认</button>
+     <button class="btn btn-success btn-lg" @click="showDeleteModal=false">不需要</button>
     </div>
   </div>
 </div>
@@ -178,7 +174,7 @@
 
 <!-- 删除信息结束 -->
 </div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.js'></script>
-
 <script src="main.js"></script>
 </html>
